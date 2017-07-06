@@ -16,6 +16,23 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     @IBOutlet weak var questionLabel: UILabel!
     
+    @IBAction func submitButtonPressed(_ sender: Any) {
+        var alert : UIAlertController
+        
+        if CardCollection.instance.checkAnswer(_selectedAnswer: answerPickerView.selectedRow(inComponent: 0)){
+            alert = UIAlertController(title: "Correct", message: "Correct Answer!", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Yay!", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true)
+            
+        }
+        else {
+            // answer incorrect
+            // expand to check finished code.
+            alert = UIAlertController(title: "Incorrect", message: "Incorrect Answer.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Aww.", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
